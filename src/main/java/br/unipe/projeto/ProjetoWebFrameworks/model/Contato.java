@@ -17,7 +17,7 @@ public class Contato {
 	@Column(name="nome", nullable=false)
 	private String nome;
 	
-	@Column(name="sobreNome", nullable=false)
+	@Column(name="sobre_nome", nullable=false)
 	private String sobreNome;
 	
 	@Column(name="telefone", nullable=false)

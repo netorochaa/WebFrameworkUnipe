@@ -4,19 +4,38 @@
 	</head>
 	<body>
 	    <div class="container" style="width:500px">
-	      <form class="form-signin" action="cadastraUsuario" method="POST">
+	    <h3 style="color: green">Usuario logado: <span th:text="${usuarioLogado.nome}"></span></h3>
+	      
+	      <form class="form-signin" th:action="@{/cadastraUsuario}" method="POST">
 	        <h2 class="form-signin-heading">Cadastrar usuario</h2>
-	        <label for="login">Login:</label> <input type="text" name="login" class="form-control" placeholder="Usuario"/>
-	        <label for="nome">Nome:</label><input type="text" name="nome" class="form-control" placeholder="Nome"/>
-	        <label for="senha">Senha:</label><input type="password" name="senha" class="form-control" placeholder="Senha"/>
+	        <label for="login">Login:</label> <input type="text" name="login" class="form-control"/>
+	        <label for="nome">Nome:</label><input type="text" name="nome" class="form-control"/>
+	        <label for="senha">Senha:</label><input type="password" name="senha" class="form-control"/>
 	        <label for="perfil">Perfil:</label>
 	        <select class="form-control" name="perfil">
 	        	<option value="Administrador">Administrador</option>
 			  	<option value="Usuario">Usuario</option>
 	        </select>
-	        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	        <br />
+        	<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+        	<br />
 	      </form>
-	
+		<h4>Lista de usuarios:</h4>
+		<table>
+		<thead>
+	      <tr>
+	        <th>Nome</th>
+	        <th>Login</th>
+	      </tr>
+	    </thead>
+	    <br/>
+	    <tbody>
+	      <tr th:each="usuario: ${usuarios}">
+	        <td th:text="${usuario.nome}"></td>
+	        <td th:text="${usuario.login}"></td>
+	      </tr>
+	    </tbody>
+	  </table>
 	    </div>
     
 	</body>

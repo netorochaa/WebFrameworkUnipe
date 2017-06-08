@@ -3,33 +3,43 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-	<div class="container" style="width:700px">
-		<h3 class="form-signin-heading">Adicione um novo contato para o usuario</h3>
-		<form class="form-signin" action="cadastraContato" method="POST">
-		      <label for="nome">Nome:</label> <input class="form-control" type="text" name="nome" size="50"></input>  
-		      <label for="sobreNome">Sobre Nome:</label> <input class="form-control" type="text" name="sobreNome" size="50"></input>
-		      <label for="telefone">Telefone:</label> <input class="form-control" type="text" name="telefone" size="11"></input> 
-		      <label for="email">E-mail:</label> <input class="form-control" type="text" name="email" size="50"></input>
-		      <br /> 
-		      <input class="btn btn-lg btn-primary btn-block" type="submit"></input>
-		</form>
-		<hr />
-		<h2>Lista de contatos do usuario: 
-			<!-- <span th:text="${usuario.nome}" ></span> -->
-		</h2>
-		<div th:unless="${#lists.isEmpty(contatos)}">
-		      <dl th:each="Contato : ${contatos}">
-		            <dt class="bookHeadline">
-		                  <span th:text="${contato.nome}"> </span>
-		                  <span th:text="${contato.sobreNome}"> - </span>  
-		          Número: <span th:text="${contato.telefone}"> - </span>
-		          		  <span th:text="${contato.email}"></span>
-		            </dt>
-		      </dl>
-		</div>
-		<div th:if="${#lists.isEmpty(contatos)}">
-		      <p>Nenhum contato cadastrado para esse usuário</p>
-		</div>
-	</div>
+	<div class="container" style="width:600px">	
+	  <h1>Cadastro de Contatos</h1>
+ 
+      <form class="form-signin" th:action="@{/cadastraContato}" method="POST">
+        <label for="nome">Nome</label>:
+        <input type="text" name="nome" class="form-control"/>
+        <label for="sobreNome">Sobre Nome</label>:
+        <input type="text" name="sobreNome" class="form-control"/>
+        <label for="email">E-mail</label>:
+        <input type="text" name="email" class="form-control"/>
+        <label for="telefone">Telefone</label>:
+        <input type="text" name="telefone" class="form-control"/>
+        <br />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+      </form>
+      		
+	  <h4 style="color: green">Usuario logado: <span th:text="${usuarioLogado.nome}"></span></h4>
+	  <h5 style="color: blue"><a href="usuario"> Cadastrar usuario </a></h5>
+	  <table>
+	    <thead>
+	      <tr>
+	        <th>Nome</th>
+	        <th>Sobre Nome</th>
+	        <th>E-mail</th>
+	        <th>Telefone</th>
+	      </tr>
+	    </thead>
+	    <br/>
+	    <tbody>
+	      <tr th:each="contato: ${contatos}">
+	        <td th:text="${contato.nome}"></td>
+	        <td th:text="${contato.sobreNome}"></td>
+	        <td th:text="${contato.email}"></td>
+	        <td th:text="${contato.telefone}"></td>
+	      </tr>
+	    </tbody>
+	  </table>
+   </div>
 </body>
 </html>
