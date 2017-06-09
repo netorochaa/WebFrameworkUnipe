@@ -1,5 +1,6 @@
 <html>
 	<head>
+	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 	<style>
 	    td, th {
@@ -15,28 +16,34 @@
 	</head>
 	<body>
 	    <div class="container" style="width:500px">
-	    <h4 style="color: green">Usuario logado: <span th:text="${usuarioLogado.nome}"></span></h4>
+	    
+	    <table style="border: 1px solid transparent;">
+	    	<tr style="border: 1px solid transparent;">
+	    		<td align="left"><h4 style="color: green">Usuário logado: <span th:text="${usuarioLogado.nome}"></span></h4></td>
+	    		<td align="right"><a href="deslogar">Sair</a></td>
+	    	</tr>
+	    </table>
 	      
 	      <form class="form-signin" th:action="@{/cadastraUsuario}" method="POST">
-	        <h2 class="form-signin-heading">Cadastrar usuario</h2>
-	        <label for="login">Login:</label> <input type="text" name="login" class="form-control"/>
-	        <label for="nome">Nome:</label><input type="text" name="nome" class="form-control"/>
-	        <label for="senha">Senha:</label><input type="password" name="senha" class="form-control"/>
+	        <h2 class="form-signin-heading">Cadastrar Usuário</h2>
+	        <label for="login">Login:</label> <input type="text" name="login" class="form-control" required="required"/>
+	        <label for="nome">Nome:</label><input type="text" name="nome" class="form-control" required="required"/>
+	        <label for="senha">Senha:</label><input type="password" name="senha" class="form-control" required="required"/>
 	        <label for="perfil">Perfil:</label>
-	        <select class="form-control" name="perfil">
-	        	<option value="Administrador">Administrador</option>
-			  	<option value="Usuario">Usuario</option>
-	        </select>
-	        <br />
-        	<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+	        <select name="perfil" class="form-control">
+				<option th:each="perfil : ${perfis}" th:value="${perfil.codigo}"
+					th:text="${perfil.nome}"></option>
+			</select> <br />
+        	<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar Usuário</button>
         	<br />
 	      </form>
-		<h4>Lista de usuarios:</h4>
+		<h4>Lista de Usuários:</h4>
 		<table>
 		<thead>
 	      <tr>
 	        <th>Nome</th>
 	        <th>Login</th>
+	        <th>Operação</th>
 	      </tr>
 	    </thead>
 	    <br/>
@@ -44,10 +51,12 @@
 	      <tr th:each="usuario: ${usuarios}">
 	        <td th:text="${usuario.nome}"></td>
 	        <td th:text="${usuario.login}"></td>
-	        <td> <a style="color: red" href="deletarUsuario">Excluir</a> </td>
+	        <td> <a style="color: red" th:href="@{deletaUsuario/{id}(id=${usuario.id})}">Excluir</a> </td>
 	      </tr>
 	    </tbody>
 	  </table>
+	  
+	  <p>Não é possível excluir o usuário "Administrador do Sistema" nem o usuário logado</p>
 	    </div>
     
 	</body>

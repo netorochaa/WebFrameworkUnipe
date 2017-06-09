@@ -1,25 +1,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
+	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
 	</head>
 	<body>
 	    <div class="container" style="width:300px">		
-	      <form class="form-signin" th:action="@{/contato}" method="POST">
+	      <form class="form-signin" th:action="@{/principal}" method="POST">
 	        <h2 class="form-signin-heading">APP com SpringBoot</h2>
 	        <label for="login">Login</label>:
-	        <input type="text" name="login" class="form-control" placeholder="Usuario"/>
+	        <input type="text" name="login" class="form-control" placeholder="Usuário" required="required"/>
 	        <label for="senha">Senha</label>:
-	        <input type="password" name="senha" class="form-control" placeholder="Senha"/>
-	        <select class="form-control">
-	        	<option value="Administrador">Administrador</option>
-			  	<option value="Usuario">Usuario</option>
-	        </select>
-	        <br />
-	        <a href="usuario"> Cadastre-se	</a>
-	        <br />
+	        <input type="password" name="senha" class="form-control" placeholder="Senha" required="required"/>
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 	      </form>
-	      <p th:if="${loginError}" class="error">Login Inv�lido</p>
+	      <p th:if="${loginError}" class="error">Login Inválido</p>
 	
 	    </div>
     

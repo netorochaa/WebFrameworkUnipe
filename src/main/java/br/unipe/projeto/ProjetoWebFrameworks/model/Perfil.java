@@ -1,31 +1,46 @@
 package br.unipe.projeto.ProjetoWebFrameworks.model;
 
-public enum Perfil {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Perfil {
 	
-ADM(1, "ADMINISTRADOR"), USER(2, "USUÁRIO");
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
 	
-	private int cdPerfil;
-	private String noPerfil;
+	@Column(name="codigo", nullable=false)
+	private String codigo;
 	
-	Perfil(int cdPerfil, String noPerfil){
-		this.cdPerfil = cdPerfil;
-		this.noPerfil = noPerfil;
+	@Column(name="nome", nullable=false)
+	private String nome;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public int getCdPerfil() {
-		return cdPerfil;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setCdPerfil(int cdPerfil) {
-		this.cdPerfil = cdPerfil;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public String getNoPerfil() {
-		return noPerfil;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
-	public void setNoPerfil(String noPerfil) {
-		this.noPerfil = noPerfil;
+	public String getNome() {
+		return nome;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 }

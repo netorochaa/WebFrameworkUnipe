@@ -8,4 +8,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	Usuario findByLogin(String login);
 	
+	Usuario findByLoginAndSenha(String login, String senha);
+	
+	Usuario findById(Integer id);
+	
 }

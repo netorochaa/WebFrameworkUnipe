@@ -10,4 +10,6 @@ public interface ContatoRepository extends JpaRepository<Contato, Long> {
 	
 	List<Contato> findByUsuario(Usuario usuario);
 
+	Contato findById(Integer id);
+
 }

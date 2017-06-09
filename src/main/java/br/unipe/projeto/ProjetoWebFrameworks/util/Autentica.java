@@ -5,18 +5,16 @@ import br.unipe.projeto.ProjetoWebFrameworks.repository.UsuarioRepository;
 
 public class Autentica {
 	
-	public Usuario authUsuário(String login, String senha, UsuarioRepository usuarioRepository){
-		if(!login.isEmpty() || !senha.isEmpty()){
-  		  Usuario usuarioValido = null;
+	public Usuario authUsuario(String login, String senha, UsuarioRepository usuarioRepository){
+		
+		Usuario usuarioValido = null;
+		
+		if( login != null && !login.isEmpty() 
+				&& senha != null && !senha.isEmpty()){
   		  
-  		  if(usuarioRepository.findByLogin(login) != (null)){
-			  usuarioValido = usuarioRepository.findByLogin(login);    			  
-		  }
-	      
-		  if(!usuarioValido.equals(null) && usuarioValido.getSenha().equals(senha)){
-			  return usuarioValido;
-		  }
+  		  usuarioValido = usuarioRepository.findByLoginAndSenha(login, senha);
+  		  
 		}
-		return null;
+		return usuarioValido;
 	}
 }

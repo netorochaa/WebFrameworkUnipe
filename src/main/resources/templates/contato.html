@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta charset="UTF-8" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <style>
     td, th {
@@ -15,22 +16,26 @@
 </head>
 <body>
 	<div class="container" style="width:600px">
-	  <h4 style="color: green">Usuario logado: <span th:text="${usuarioLogado.nome}"></span></h4>	
+	  <table style="border: 1px solid transparent;">
+	    	<tr style="border: 1px solid transparent;">
+	    		<td align="left"><h4 style="color: green">Usuário logado: <span th:text="${usuarioLogado.nome}"></span></h4></td>
+	    		<td align="right"><a href="deslogar">Sair</a></td>
+	    	</tr>
+	   </table>	
 	  <h1>Cadastro de Contatos</h1>
  
       <form class="form-signin" th:action="@{/cadastraContato}" method="POST">
         <label for="nome">Nome</label>:
-        <input type="text" name="nome" class="form-control"/>
+        <input type="text" name="nome" class="form-control" required="required"/>
         <label for="sobreNome">Sobre Nome</label>:
-        <input type="text" name="sobreNome" class="form-control"/>
+        <input type="text" name="sobreNome" class="form-control" required="required"/>
         <label for="email">E-mail</label>:
-        <input type="text" name="email" class="form-control"/>
+        <input type="text" name="email" class="form-control" required="required"/>
         <label for="telefone">Telefone</label>:
-        <input type="text" name="telefone" class="form-control"/>
+        <input type="text" name="telefone" class="form-control" required="required"/>
         <br />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar Contato</button>
       </form>
-	  <h5 style="color: blue"><a href="usuario">+ CADASTRAR USUARIO </a></h5>
 	  <table>
 	    <thead>
 	      <tr>
@@ -38,6 +43,7 @@
 	        <th>Sobre Nome</th>
 	        <th>E-mail</th>
 	        <th>Telefone</th>
+	        <th>Operação</th>
 	      </tr>
 	    </thead>
 	    <br/>
@@ -47,7 +53,7 @@
 	        <td th:text="${contato.sobreNome}"></td>
 	        <td th:text="${contato.email}"></td>
 	        <td th:text="${contato.telefone}"></td>
-	        <td> <a style="color: red" href="deletarContato">Excluir</a> </td>
+	        <td> <a style="color: red" th:href="@{deletaContato/{id}(id=${contato.id})}">Excluir</a> </td>
 	      </tr>
 	    </tbody>
 	  </table>

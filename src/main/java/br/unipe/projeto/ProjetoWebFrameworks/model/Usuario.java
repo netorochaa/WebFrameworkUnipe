@@ -1,13 +1,14 @@
 package br.unipe.projeto.ProjetoWebFrameworks.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Usuario {
@@ -25,8 +26,11 @@ public class Usuario {
 	@Column(name="senha", nullable=false)
 	private String senha;
 	
-	@OneToMany
-	private Set<Contato> contatos;
+	@ManyToOne(optional=false)
+	private Perfil perfil;
+
+	@Transient
+	private List<Contato> contatos;
 
 	public Integer getId() {
 		return id;
@@ -59,12 +63,20 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public Perfil getPerfil() {
+		return perfil;
+	}
 
-	public Set<Contato> getContatos() {
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public List<Contato> getContatos() {
 		return contatos;
 	}
 
-	public void setContatos(Set<Contato> contatos) {
+	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
 	}
 
