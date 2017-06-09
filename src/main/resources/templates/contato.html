@@ -1,9 +1,21 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<style>
+    td, th {
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    table, tbody{
+    	border:1px solid black;
+    
+    }
+</style>
 </head>
 <body>
-	<div class="container" style="width:600px">	
+	<div class="container" style="width:600px">
+	  <h4 style="color: green">Usuario logado: <span th:text="${usuarioLogado.nome}"></span></h4>	
 	  <h1>Cadastro de Contatos</h1>
  
       <form class="form-signin" th:action="@{/cadastraContato}" method="POST">
@@ -18,9 +30,7 @@
         <br />
         <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
       </form>
-      		
-	  <h4 style="color: green">Usuario logado: <span th:text="${usuarioLogado.nome}"></span></h4>
-	  <h5 style="color: blue"><a href="usuario"> Cadastrar usuario </a></h5>
+	  <h5 style="color: blue"><a href="usuario">+ CADASTRAR USUARIO </a></h5>
 	  <table>
 	    <thead>
 	      <tr>
@@ -37,6 +47,7 @@
 	        <td th:text="${contato.sobreNome}"></td>
 	        <td th:text="${contato.email}"></td>
 	        <td th:text="${contato.telefone}"></td>
+	        <td> <a style="color: red" href="deletarContato">Excluir</a> </td>
 	      </tr>
 	    </tbody>
 	  </table>
